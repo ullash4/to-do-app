@@ -34,7 +34,7 @@ const AddTask = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="form-control w-full max-w-xs mx-auto">
           <label className="label">
-            <span className="label-text">Name</span>
+            <span className="label-text">Task Name</span>
           </label>
           <input
             {...register("name", {
