@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import './App.css';
 import AddTask from './Components/AddTask';
 import Home from './Components/Home';
@@ -7,7 +8,7 @@ import MyTask from './Components/MyTask';
 import Navbar from './Components/Navbar';
 import PrivateRoute from './Components/PrivateRoute';
 import SignUp from './Components/SignUp';
-import Users from './Components/Users';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
@@ -18,11 +19,6 @@ function App() {
         <Route path='/home' element={<Home />}></Route>
         <Route path='/login' element={<LogIn />}></Route>
         <Route path='/signup' element={<SignUp />}></Route>
-        <Route path='/users' element={
-          <PrivateRoute>
-        <Users />
-        </PrivateRoute>
-        }></Route>
         <Route path='/addtask' element={
           <PrivateRoute>
         <AddTask />
@@ -34,6 +30,7 @@ function App() {
         </PrivateRoute>
         }></Route>
       </Routes>
+      <ToastContainer />
     </div>
   );
 }

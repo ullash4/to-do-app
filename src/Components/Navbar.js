@@ -33,9 +33,7 @@ const Navbar = () => {
             tabIndex="0"
             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
-            <li>
-              <Link to={'/users'}>Users</Link>
-            </li>
+            
             <li>
             <Link to={'/addtask'}>Add Task</Link>
             </li>
@@ -53,9 +51,7 @@ const Navbar = () => {
       </div>
       <div className="navbar-end hidden  lg:flex">
         <ul className="menu menu-horizontal gap-2 p-0">
-        <li>
-              <NavLink to={'/users'}>Users</NavLink>
-            </li>
+        
             <li>
             <NavLink to={'/addtask'}>Add Task</NavLink>
             </li>
