@@ -2,7 +2,8 @@ import React from "react";
 import { toast } from "react-toastify";
 
 const TaskRow = ({ index, task, refetch }) => {
-  const { name, description, _id } = task;
+  const { name, description,role, _id } = task;
+  
   
   
   const handleDelete = (_id) => {
@@ -22,17 +23,27 @@ const TaskRow = ({ index, task, refetch }) => {
         });
     }
   };
+
+  const handleComplete=(_id)=>{
+    fetch(`http://localhost:5000/task/complete/${_id}`,{
+        method: 'PUT'
+    })
+    .then(res=>res.json())
+    .then(data=>{
+        console.log(data);
+    })
+  }
   
   return (
     <tr className="hover">
       <th>{index + 1}</th>
       <td>{name}</td>
       <td>
-        <p className="text-ellipsis">{description}</p>
+        <p className={`${role === 'complete' && 'line-through'}`}>{description}</p>
       </td>
       <td>
         <button onClick={()=>handleDelete(_id)} className="btn btn-xs mx-1 btn-error">Delete</button>
-        <button className="btn btn-xs mx-1 btn-success">Complete</button>
+        <button onClick={()=>handleComplete(_id)} className="btn btn-xs mx-1 btn-success">Complete</button>
       </td>
     </tr>
   );

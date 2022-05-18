@@ -6,7 +6,6 @@ import TaskRow from "./TaskRow";
 const MyTask = () => {
   const {
     isLoading,
-    error,
     data: tasks,
     refetch
   } = useQuery("toDoTasks", () =>
