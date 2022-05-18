@@ -9,7 +9,9 @@ const MyTask = () => {
     data: tasks,
     refetch,
   } = useQuery("toDoTasks", () =>
-    fetch("http://localhost:5000/task").then((res) => res.json())
+    fetch("https://peaceful-ravine-79364.herokuapp.com/task").then((res) =>
+      res.json()
+    )
   );
   if (isLoading) {
     return <Loading></Loading>;
