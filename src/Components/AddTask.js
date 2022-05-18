@@ -1,5 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 
 const AddTask = () => {
     const {
@@ -20,9 +21,10 @@ const AddTask = () => {
         })
         .then(res=>res.json())
         .then(data=>{
+          toast.success("Successfully task added")
           console.log(data);
         })
-        console.log(data);
+        
       };
     return (
         <div className="mb-10 lg:max-w-lg mx-auto mt-7 shadow-2xl py-10 px-16 bg-gray-300 rounded-lg">
@@ -30,7 +32,7 @@ const AddTask = () => {
         Add a  Task
       </h1>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="form-control w-full max-w-xs">
+        <div className="form-control w-full max-w-xs mx-auto">
           <label className="label">
             <span className="label-text">Name</span>
           </label>
@@ -43,7 +45,7 @@ const AddTask = () => {
             })}
             type="text"
             placeholder="Your Name"
-            className="input input-bordered w-full max-w-xs"
+            className="input input-bordered w-full max-w-xs "
           />
           <label className="label">
             {errors.name?.type === "required" && (
@@ -55,7 +57,7 @@ const AddTask = () => {
         </div>
 
 
-        <div className="form-control w-full max-w-xs">
+        <div className="form-control w-full max-w-xs mx-auto">
           <label className="label">
             <span className="label-text">Description</span>
           </label>
@@ -79,7 +81,7 @@ const AddTask = () => {
         </div>
 
         <input
-          className="btn bg-black outline-none text-white hover:text-white btn-wide mt-5"
+          className="btn btn-sm ml-8 btn-primary"
           value="Add New Task"
           type="submit"
         />

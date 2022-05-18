@@ -30,6 +30,7 @@ const TaskRow = ({ index, task, refetch }) => {
     })
     .then(res=>res.json())
     .then(data=>{
+        refetch()
         console.log(data);
     })
   }
@@ -37,7 +38,7 @@ const TaskRow = ({ index, task, refetch }) => {
   return (
     <tr className="hover">
       <th>{index + 1}</th>
-      <td>{name}</td>
+      <td><p className={`${role === 'complete' && 'line-through'}`}>{name}</p></td>
       <td>
         <p className={`${role === 'complete' && 'line-through'}`}>{description}</p>
       </td>

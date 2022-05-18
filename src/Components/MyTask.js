@@ -7,7 +7,7 @@ const MyTask = () => {
   const {
     isLoading,
     data: tasks,
-    refetch
+    refetch,
   } = useQuery("toDoTasks", () =>
     fetch("http://localhost:5000/task").then((res) => res.json())
   );
@@ -16,9 +16,11 @@ const MyTask = () => {
   }
   return (
     <div className="px-20 my-10">
-      <h1 className="text-2xl font-bold text-center my-5">All task load Here{tasks.length}</h1>
-      <div class="overflow-x-auto">
-        <table class="table w-full mx-auto">
+      <h1 className="text-2xl font-bold text-center my-5">
+        All task load Here{tasks.length}
+      </h1>
+      <div className="overflow-x-auto">
+        <table className="table w-full mx-auto">
           <thead>
             <tr>
               <th>Serial</th>
@@ -29,7 +31,12 @@ const MyTask = () => {
           </thead>
           <tbody>
             {tasks.map((task, index) => (
-              <TaskRow refetch={refetch} index={index} key={task._id} task={task}></TaskRow>
+              <TaskRow
+                refetch={refetch}
+                index={index}
+                key={task._id}
+                task={task}
+              ></TaskRow>
             ))}
           </tbody>
         </table>
