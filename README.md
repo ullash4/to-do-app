@@ -1,17 +1,9 @@
 # To-Do-App - A simple todo task  website
-## Website Name : [To-Do-App](https://sports-wizard-e919a.web.app/)
-## Website Live Link : [Live Site](https://sports-wizard-e919a.web.app/)
-## Website Client-Side Repo Link : [Client-side Repo Link](https://github.com/ProgrammingHeroWC4/warehouse-management-client-side-ullash4)
-## Website Server-side Repo Link : [Server-side Repo Link](https://github.com/ProgrammingHeroWC4/warehouse-management-server-side-ullash4)
+## Website Name : [To-Do-App](https://to-do-app-8fe72.web.app/home)
+## Website Live Link : [Live Site](https://to-do-app-8fe72.web.app/home)
+## Website Client-Side Repo Link : [Client-side Repo Link](https://github.com/ullash4/to-do-app)
+## Website Server-side Repo Link : [Server-side Repo Link](https://github.com/ullash4/to-do-server)
 A multiple items warehouse/inventory management fullstack website
-## Features:
-
-- Manage Inventory Page
-- My Item page
-- Add Item page
-- Manage Item page
-- (inventory/:id) routed page which is protected or privet
-- 404 not found  page
 
 
-## Used Technologies: React.js, React Bootstrap, React icons, React router, Toastify, React firebase hooks, Firebase, Express Nodejs, Mongodb, 
+## Used Technologies: React.js, Tailwind, DaisyUi,  React router, Toastify, React firebase hooks, Firebase, Express Nodejs, Mongodb
