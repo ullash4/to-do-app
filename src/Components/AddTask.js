@@ -44,7 +44,7 @@ const AddTask = () => {
               },
             })}
             type="text"
-            placeholder="Your Name"
+            placeholder="Task Name"
             className="input input-bordered w-full max-w-xs "
           />
           <label className="label">
