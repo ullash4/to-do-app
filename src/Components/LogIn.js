@@ -1,7 +1,10 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import SocialLogIn from "./SocialLogIn";
 import { useForm } from "react-hook-form";
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import auth from "../firebase.init";
+import Loading from "./Loading";
 
 const LogIn = () => {
   const {
@@ -9,9 +12,37 @@ const LogIn = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
+
+  const [
+    signInWithEmailAndPassword,
+    user,
+    loading,
+    error,
+  ] = useSignInWithEmailAndPassword(auth);
+
+  const navigate = useNavigate()
+
+  const location = useLocation();
+  let from = location.state?.from?.pathname || '/'
+  useEffect(()=>{
+    if(user){
+      navigate(from, {replace: true})
+    }
+  },[from,navigate, user])
+
   const onSubmit = (data) => {
+    signInWithEmailAndPassword(data.email, data.password)
     console.log(data);
   };
+
+  if(loading){
+    return <Loading></Loading>
+}
+let errorElement;
+if(error){
+  errorElement=  <p>Error: {error.message}</p>
+}
+
   return (
     <div className="card w-96 mx-auto bg-base-100 shadow-xl my-10">
       <div className="card-body items-center text-center">
@@ -83,7 +114,7 @@ const LogIn = () => {
                 )}
               </label>
             </div>
-            {/* {errorMessage} */}
+            {errorElement}
             <input className="btn btn-wide" value="Log In" type="submit" />
             <button className="btn btn-link btn-sm mt-5">
               Forget Password ?
@@ -92,7 +123,7 @@ const LogIn = () => {
           <div className="mt-4">
             <p>
               <small>
-                New to Doctors Portal ?{" "}
+                New to To-do app ?{" "}
                 <Link className="text-primary" to={"/signup"}>
                   Create Account
                 </Link>

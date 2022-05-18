@@ -1,17 +1,49 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import auth from '../firebase.init';
 import SocialLogIn from './SocialLogIn';
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import Loading from './Loading';
 
 const SignUp = () => {
+    const [
+        createUserWithEmailAndPassword,
+        user,
+        loading,
+        error,
+      ] = useCreateUserWithEmailAndPassword(auth);
+      const navigate = useNavigate()
     const {
         register,
         formState: { errors },
         handleSubmit,
       } = useForm();
+
+      const location = useLocation();
+      let from = location.state?.from?.pathname || '/'
+      useEffect(()=>{
+        if(user){
+          navigate(from, {replace: true})
+        }
+      },[from,navigate, user])
+
       const onSubmit = (data) => {
+        createUserWithEmailAndPassword(data.email, data.password)
         console.log(data);
       };
+      if(loading){
+          return <Loading></Loading>
+      }
+      let errorElement;
+      if(error){
+        errorElement=  <p>Error: {error.message}</p>
+      }
+
+      
+
+      
+
     return (
 <div className="card w-96 mx-auto bg-base-100 shadow-xl my-10">
       <div className="card-body items-center text-center">
@@ -108,7 +140,7 @@ const SignUp = () => {
                 )}
               </label>
             </div>
-            {/* {errorMessage} */}
+            {errorElement}
             <input className="btn btn-wide" value="sign up" type="submit" />
           </form>
           <div className="mt-4">

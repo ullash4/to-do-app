@@ -8,12 +8,26 @@ const AddTask = () => {
         handleSubmit,
       } = useForm();
       const onSubmit = (data) => {
+        const name=data.name;
+        const description=data.description;
+        const task={name, description}
+        fetch('http://localhost:5000/task',{
+          method:"POST",
+          headers:{
+            'content-type':'application/json'
+          },
+          body:JSON.stringify(task)
+        })
+        .then(res=>res.json())
+        .then(data=>{
+          console.log(data);
+        })
         console.log(data);
       };
     return (
         <div className="mb-10 lg:max-w-lg mx-auto mt-7 shadow-2xl py-10 px-16 bg-gray-300 rounded-lg">
       <h1 className="text-2xl font-bold mb-5">
-        Add a New Doctor
+        Add a  Task
       </h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="form-control w-full max-w-xs">

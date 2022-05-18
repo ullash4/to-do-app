@@ -1,11 +1,41 @@
-import React from 'react';
+import React from "react";
+import { useQuery } from "react-query";
+import Loading from "./Loading";
+import TaskRow from "./TaskRow";
 
 const MyTask = () => {
-    return (
-        <div>
-            <h1>this is my task page</h1>
-        </div>
-    );
+  const {
+    isLoading,
+    error,
+    data: tasks,
+  } = useQuery("toDoTasks", () =>
+    fetch("http://localhost:5000/task").then((res) => res.json())
+  );
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
+  return (
+    <div className="px-20">
+      <h1 className="text-2xl font-bold text-center my-5">All task load Here{tasks.length}</h1>
+      <div class="overflow-x-auto">
+        <table class="table w-full mx-auto">
+          <thead>
+            <tr>
+              <th>Serial</th>
+              <th>Task Name</th>
+              <th>Description</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tasks.map((task, index) => (
+              <TaskRow index={index} key={task._id} task={task}></TaskRow>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
 };
 
 export default MyTask;

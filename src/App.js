@@ -5,6 +5,7 @@ import Home from './Components/Home';
 import LogIn from './Components/LogIn';
 import MyTask from './Components/MyTask';
 import Navbar from './Components/Navbar';
+import PrivateRoute from './Components/PrivateRoute';
 import SignUp from './Components/SignUp';
 import Users from './Components/Users';
 
@@ -13,12 +14,25 @@ function App() {
     <div>
         <Navbar />
       <Routes>
+        <Route path='/' element={<Home />}></Route>
         <Route path='/home' element={<Home />}></Route>
         <Route path='/login' element={<LogIn />}></Route>
         <Route path='/signup' element={<SignUp />}></Route>
-        <Route path='/users' element={<Users />}></Route>
-        <Route path='/addtask' element={<AddTask />}></Route>
-        <Route path='/mytask' element={<MyTask />}></Route>
+        <Route path='/users' element={
+          <PrivateRoute>
+        <Users />
+        </PrivateRoute>
+        }></Route>
+        <Route path='/addtask' element={
+          <PrivateRoute>
+        <AddTask />
+        </PrivateRoute>
+        }></Route>
+        <Route path='/mytask' element={
+          <PrivateRoute>
+        <MyTask />
+        </PrivateRoute>
+        }></Route>
       </Routes>
     </div>
   );
